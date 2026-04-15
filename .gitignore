@@ -1,0 +1,27 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# VS Code settings
+.vscode/
+
+# Environment folders
+env/
+venv/
+.venv/
+
+# Ignore dataset raw files and archives not intended for Git
+data/raw_data/
+data/*.zip
+
+# Keep main dataset files in data/
+# train.csv and post_feature_engineering_data.csv are included in the repo.
+
+# Ignore legacy artifact snapshot only
+artifacts/base_model.pkl
+
+# Keep model.pkl, scaler.pkl, and tfidf_vectorizer.pkl in artifacts/
