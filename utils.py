@@ -1,7 +1,7 @@
+import os
 from bs4 import BeautifulSoup
 import re
 import distance
-from nltk.corpus import stopwords
 from fuzzywuzzy import fuzz
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -267,7 +267,7 @@ def fetch_additional_features(question1: str, question2: str) -> np.array:
     additional_features_arr = np.hstack((extra_features_arr, advanced_features_arr)).reshape(1,-1)
 
     # standard scalling
-    with open('artifacts\scaler.pkl', 'rb') as scaler_file:
+    with open(os.path.join(BASE_DIR, 'artifacts', 'scaler.pkl'), 'rb') as scaler_file:
         scaler_obj = pickle.load(scaler_file)
     
     additional_features_arr_scaled = scaler_obj.transform(additional_features_arr)
@@ -277,7 +277,7 @@ def fetch_additional_features(question1: str, question2: str) -> np.array:
 def text_vectorization(question1: str, question2:str):      # will return sparse array
     
     # load vectorizer pickle file 
-    with open(r'artifacts\tfidf_vectorizer.pkl', 'rb') as file:
+    with open(os.path.join(BASE_DIR, 'artifacts', 'tfidf_vectorizer.pkl'), 'rb') as file:
         vectorizer = pickle.load(file)
 
     q1_vec = vectorizer.transform([question1])
@@ -302,7 +302,7 @@ def preprocessing_pipeline(question1: str, question2:str):      # returns sparse
 def prediction_pipeline(question1: str, question2:str):
     input_transformed_features_arr = preprocessing_pipeline(question1, question2)
 
-    with open(r'artifacts\model.pkl', 'rb') as file:
+    with open(os.path.join(BASE_DIR, 'artifacts', 'model.pkl'), 'rb') as file:
         model = pickle.load(file)
 
     prediction = model.predict(input_transformed_features_arr)
