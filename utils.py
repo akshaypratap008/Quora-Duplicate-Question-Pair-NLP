@@ -5,6 +5,7 @@ import distance
 from fuzzywuzzy import fuzz
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
+BASE_DIR = os.path.dirname(__file__)
 from scipy.sparse import hstack
 import pickle
 import numpy as np
