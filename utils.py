@@ -10,9 +10,9 @@ import pickle
 import numpy as np
 from scipy.sparse import hstack, csr_matrix
 from scipy import sparse
-from sklearn.preprocessing import StandardScaler
+from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 
-STOP_WORDS = set(stopwords.words('english'))
+STOP_WORDS = set(ENGLISH_STOP_WORDS)
 
 def preprocess(question: str) -> str:
     question = str(question).lower().strip()
